@@ -5,6 +5,10 @@ module.exports = (sequelize, DataType) => {
       primaryKey: true,
       autoIncrement: true
     },
+    user_id: {
+      type: DataType.INTEGER,
+      foreignKey: true
+    },
     title: {
       type: DataType.STRING,
       allowNull: false,
@@ -20,7 +24,7 @@ module.exports = (sequelize, DataType) => {
   },{
     classMethods: {
       associate: (models) => {
-        Tasks.belongsTo(models.Users);
+        Tasks.belongsTo(models.Users, { foreignKey: 'user_id' });
       }
     }
   });

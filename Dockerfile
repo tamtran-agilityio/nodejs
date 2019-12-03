@@ -1,5 +1,10 @@
 FROM node:12-alpine
 
+
+RUN apk update && apk upgrade
+
+RUN apk --no-cache add --virtual builds-deps build-base python
+
 ENV NODE_ROOT /web
 
 RUN mkdir -p $NODE_ROOT
