@@ -1,10 +1,14 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 module.exports = {
-  database: 'ntask',
-  username: 'sqlite',
-  password: 'sqlite',
-  host: 'localhost',
-  dialect: 'sqlite',
-  jwtSecret: '54!D#fZ$fV4EkPu0zsI1sE@DqXGsB&Ic^0zX6^V@XOh9MNxFzE',
+  port: process.env.PORT,
+  database: process.env.DATABASE,
+  username: process.env.USER_NAME,
+  password: process.env.PASSWORD,
+  host: process.env.HOST,
+  dialect: process.env.DIALECT,
+  jwtSecret: process.env.JWT_SECRET,
   jwtSession: {
     session: false
   }
