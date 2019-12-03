@@ -1,10 +1,13 @@
+import fs from 'fs';
+import path from 'path';
 import Sequelize from 'sequelize';
-const config = require('./libs/boot.js');
-let sequelize = null;
+let db = null;
 
 module.exports = app => {
-  if (!sequelize) {
-    sequelize = new Sequelize(
+  if (!db) {
+    const config = app.libs.config;
+
+    const sequelize = new Sequelize(
       config.database,
       config.username,
       config.password,
@@ -12,7 +15,26 @@ module.exports = app => {
         host: config.host,
         dialect: 'sqlite'
       }
-    )
+    );
+
+    db = {
+      sequelize,
+      Sequelize,
+      models: {}
+    };
+
+    const dir = path.join(__dirname, 'models');
+    fs.readdirSync(dir).forEach(file => {
+      const modelDir = path.join(dir, file);
+      const model = sequelize.import(modelDir);
+      db.models[model.name] = model;
+    });
+
+    Object.keys(db.models).forEach(key =>{
+      if (db.models[key].hasOwnProperty('associate')) {
+        db.models[key].associate(db.models);
+      }
+    });
   }
-  return sequelize;
+  return db;
 };
