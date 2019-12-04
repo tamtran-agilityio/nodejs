@@ -3,3 +3,4 @@ node_modules/
 .env
 database.sqlite3
 database_test.sqlite3
+public/

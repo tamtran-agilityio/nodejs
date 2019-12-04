@@ -25,7 +25,7 @@ describe('Routes: Users', () => {
   describe('GET /user', () => {
     describe('status 200', () => {
       it('return an authenticated user', done => {
-        request.get(`/users/${fakeUser.id}`)
+        request.get(`/user`)
           .set('Authorization', `Bearer ${token}`)
           .expect(200)
           .end((err, res) => {
@@ -42,7 +42,7 @@ describe('Routes: Users', () => {
         request.post('/users')
           .send({
             name: 'Mary',
-            email: 'mary@mail.net', 
+            email: 'mary@mail.net',
             password: '12345'
           })
           .expect(200)
@@ -54,10 +54,10 @@ describe('Routes: Users', () => {
       });
     });
   });
-  describe('DELETE /users/:id', () => {
+  describe('DELETE /user', () => {
     describe('status 204', () => {
       it('delete an authenticated user', done => {
-        request.delete(`/users/${fakeUser.id}`)
+        request.delete(`/user`)
           .set('Authorization', `Bearer ${token}`)
           .expect(204)
           .end((error, res) => done(error));

@@ -1,13 +1,39 @@
+import passport from 'passport';
+
 module.exports = app => {
   const Users = app.db.models.Users;
 
-  app.get('/users/:id', (req, res) => {
-    Users.findByPk(req.params.id)
-    .then(result => res.json(result))
-    .catch(error => {
-      res.status(412).json({message: error.message});
-    });
-  });
+  /**
+   * @api {post} /users Register a new user
+   * @apiGroup User
+   * @apiParam {String} name User name
+   * @apiParam {String} email User email
+   * @apiParam {String} password User password
+   * @apiParamExample {json} Input
+   *    {
+   *      "name": "John Connor",
+   *      "email": "john@connor.net",
+   *      "password": "123456"
+   *    }
+   * @apiSuccess {Number} id User id
+   * @apiSuccess {String} name User name
+   * @apiSuccess {String} email User email
+   * @apiSuccess {String} password User encrypted password
+   * @apiSuccess {Date} updated_at Update's date
+   * @apiSuccess {Date} created_at Register's date
+   * @apiSuccessExample {json} Success
+   *    HTTP/1.1 200 OK
+   *    {
+   *      "id": 1,
+   *      "name": "John Connor",
+   *      "email": "john@connor.net",
+   *      "password": "$2a$10$SK1B1",
+   *      "updated_at": "2016-02-10T15:20:11.700Z",
+   *      "created_at": "2016-02-10T15:29:11.700Z",
+   *    }
+   * @apiErrorExample {json} Register error
+   *    HTTP/1.1 412 Precondition Failed
+   */
 
   app.post('/users', (req, res) => {
     Users.create(req.body)
@@ -17,11 +43,60 @@ module.exports = app => {
       });
   });
 
-  app.delete('/users/:id', (req, res) => {
-    Users.destroy({where: {id: req.body.id}})
-      .then(result => res.json())
-      .catch(error => {
-        res.status(204).json({message: error.message});
-      });
+  app.route('/users')
+    .all(app.auth.authenticate())
+    .get((req, res) => {
+      Users.findAll()
+        .then(result => res.json(result))
+        .catch(error => {
+          res.status(412).json({message: error.message});
+        });
+    });
+
+  app.route('/user')
+    .all(app.auth.authenticate())
+    /**
+     * @api {get} /users:/id Return the authenticated user's data
+     * @apiGroup User
+     * @apiHeader {String} Authorization Token of authenticated user
+     * @apiHeaderExample {json} Header
+     *    {"Authorization": "Bearer xyz.abc.123.hgf"}
+     * @apiSuccess {Number} id User id
+     * @apiSuccess {String} name User name
+     * @apiSuccess {String} email User email
+     * @apiSuccessExample {json} Success
+     *    HTTP/1.1 200 OK
+     *    {
+     *      "id": 1,
+     *      "name": "John Connor",
+     *      "email": "john@connor.net"
+     *    }
+     * @apiErrorExample {json} Find error
+     *    HTTP/1.1 412 Precondition Failed
+     */
+    .get((req, res) => {
+      Users.findOne({where: {id: req.user.id}})
+        .then(result => res.json(result))
+        .catch(error => {
+          res.status(412).json({message: error.message});
+        });
+    })
+    /**
+     * @api {delete} /users/:id Deletes an authenticated user
+     * @apiGroup User
+     * @apiHeader {String} Authorization Token of authenticated user
+     * @apiHeaderExample {json} Header
+     *    {"Authorization": "Bearer xyz.abc.123.hgf"}
+     * @apiSuccessExample {json} Success
+     *    HTTP/1.1 204 No Content
+     * @apiErrorExample {json} Delete error
+     *    HTTP/1.1 412 Precondition Failed
+     */
+    .delete((req, res) => {
+      Users.destroy({where: {id: req.user.id}})
+        .then(result => res.sendStatus(204))
+        .catch(error => {
+          res.status(204).json({message: error.message});
+        });
   });
 };

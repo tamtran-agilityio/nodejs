@@ -5,6 +5,23 @@ module.exports = app => {
   const config = app.libs.config;
   const Users = app.db.models.Users;
 
+  /**
+   * @api {post} /token Authentication Token
+   * @apiGroup Credentials
+   * @apiParam {String} email User email
+   * @apiParam {String} password User password
+   * @apiParamExample {json} Input
+   *  {
+   *     "email": "test@gmail.com",
+   *     "password": "12345"
+   *  }
+   * @apiSuccess {String} token Token of authenticated by user
+   * @apiSuccessExample {json} Success
+   *  HTTP/1.1 200 OK
+   *  {"token": "acb.xyx.124"}
+   * @apiErrorExample {json} Authentication error
+   *  HTTP/1.1 401 Unauthorized
+   */
   app.post('/token', (req, res) => {
     if (req.body.email && req.body.password) {
       const email = req.body.email;
