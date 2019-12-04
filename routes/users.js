@@ -21,7 +21,7 @@ module.exports = app => {
     Users.destroy({where: {id: req.body.id}})
       .then(result => res.json())
       .catch(error => {
-        res.status(412).json({message: error.message});
+        res.status(204).json({message: error.message});
       });
   });
 };

@@ -40,7 +40,7 @@ module.exports = app => {
       });
     })
     .put((req, res) => {
-      Tasks.update(req.body, { where: { 
+      Tasks.update(req.body, { where: {
         id: req.params.id,
         user_id: req.user.id
       }})

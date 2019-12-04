@@ -2,7 +2,7 @@ import jwt from 'jwt-simple';
 import bcrypt from 'bcrypt';
 
 module.exports = app => {
-  const cfg = app.libs.config;
+  const config = app.libs.config;
   const Users = app.db.models.Users;
 
   app.post('/token', (req, res) => {
@@ -15,7 +15,7 @@ module.exports = app => {
           if (bcrypt.compareSync(password, user.password)) {
             const payload = {id: user.id};
             res.json({
-              token: jwt.encode(payload, cfg.jwtSecret)
+              token: jwt.encode(payload, config.jwtSecret)
             });
           } else {
             res.sendStatus(401);

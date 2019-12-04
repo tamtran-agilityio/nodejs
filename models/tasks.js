@@ -5,10 +5,6 @@ module.exports = (sequelize, DataType) => {
       primaryKey: true,
       autoIncrement: true
     },
-    user_id: {
-      type: DataType.INTEGER,
-      foreignKey: true
-    },
     title: {
       type: DataType.STRING,
       allowNull: false,
