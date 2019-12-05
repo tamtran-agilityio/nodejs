@@ -6,6 +6,7 @@
   "author": "tam.tran@anset.com.vn",
   "scripts": {
     "start": "npm run apidoc && babel-watch index.js",
+    "clusters": "babel-node clusters.js",
     "apidoc": "apidoc -i routes/ -o public/apidoc",
     "test": "NODE_ENV=test mocha --require @babel/register test/**/*.js --exit"
   },
@@ -23,22 +24,28 @@
   "dependencies": {
     "babel-cli": "6.26.0",
     "babel-watch": "7.0.0",
-    "bcrypt": "^3.0.7",
-    "body-parser": "^1.19.0",
+    "bcrypt": "3.0.7",
+    "body-parser": "1.19.0",
+    "compression": "^1.7.4",
     "consign": "0.1.6",
+    "cors": "2.8.5",
     "express": "4.17.1",
     "grpc": "1.24.2",
+    "helmet": "^3.21.2",
     "jwt-simple": "0.5.6",
+    "morgan": "1.9.1",
     "passport": "0.4.0",
     "passport-jwt": "4.0.0",
     "sequelize": "5.21.2",
-    "sqlite3": "4.1.0"
+    "sqlite3": "4.1.0",
+    "winston": "3.2.1"
   },
   "devDependencies": {
     "@babel/core": "7.7.4",
+    "@babel/node": "7.7.4",
     "@babel/preset-env": "7.7.4",
     "@babel/register": "7.7.4",
-    "apidoc": "^0.19.0",
+    "apidoc": "0.19.0",
     "chai": "4.2.0",
     "dotenv": "8.2.0",
     "mocha": "6.2.2",

@@ -4,3 +4,6 @@ node_modules/
 database.sqlite3
 database_test.sqlite3
 public/
+
+localhost.cert
+localhost.key

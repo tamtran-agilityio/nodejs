@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
+import logger from './logger.js';
+
 module.exports = {
   port: process.env.PORT,
   database: process.env.DATABASE,
@@ -12,6 +14,14 @@ module.exports = {
   jwtSecret: process.env.JWT_SECRET,
   jwtSession: {
     session: false
+  },
+  params: {
+    logging: (sql) => {
+      logger.info(`[${new Date()}] ${sql}`);
+    },
+    define: {
+      underscored: true
+    }
   }
 };
 

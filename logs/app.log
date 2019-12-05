@@ -1,0 +1,14 @@
+{"message":"::ffff:172.21.0.1 - - [05/Dec/2019:03:12:15 +0000] \"POST /token HTTP/1.1\" 200 111\n","level":"info"}
+{"message":"::ffff:172.21.0.1 - - [05/Dec/2019:04:10:07 +0000] \"POST /token HTTP/1.1\" 200 111\n","level":"info"}
+{"message":"::ffff:172.21.0.1 - - [05/Dec/2019:04:32:40 +0000] \"POST /token HTTP/1.1\" 200 111\n","level":"info"}
+{"message":"::ffff:172.21.0.1 - - [05/Dec/2019:04:35:27 +0000] \"POST /token HTTP/1.1\" 200 111\n","level":"info"}
+{"message":"::ffff:172.21.0.1 - - [05/Dec/2019:04:41:26 +0000] \"POST /token HTTP/1.1\" 200 111\n","level":"info"}
+{"message":"::ffff:172.21.0.1 - - [05/Dec/2019:04:41:33 +0000] \"GET /user HTTP/1.1\" 200 240\n","level":"info"}
+{"message":"::ffff:172.21.0.1 - - [05/Dec/2019:04:41:42 +0000] \"GET /tasks HTTP/1.1\" 200 225\n","level":"info"}
+{"message":"::ffff:172.21.0.1 - - [05/Dec/2019:04:44:03 +0000] \"GET /tasks HTTP/1.1\" 200 225\n","level":"info"}
+{"message":"::ffff:172.21.0.1 - - [05/Dec/2019:04:45:05 +0000] \"GET /tasks HTTP/1.1\" 200 225\n","level":"info"}
+{"message":"::ffff:172.21.0.1 - - [05/Dec/2019:07:27:31 +0000] \"GET /tasks HTTP/1.1\" 200 225\n","level":"info"}
+{"message":"::ffff:172.21.0.1 - - [05/Dec/2019:07:27:33 +0000] \"GET /tasks HTTP/1.1\" 200 225\n","level":"info"}
+{"message":"::ffff:172.21.0.1 - - [05/Dec/2019:07:27:34 +0000] \"GET /tasks HTTP/1.1\" 200 225\n","level":"info"}
+{"message":"::ffff:172.21.0.1 - - [05/Dec/2019:07:27:44 +0000] \"POST /token HTTP/1.1\" 200 111\n","level":"info"}
+{"message":"::ffff:172.21.0.1 - - [05/Dec/2019:07:27:46 +0000] \"POST /token HTTP/1.1\" 200 111\n","level":"info"}
