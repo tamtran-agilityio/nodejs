@@ -8,10 +8,16 @@ module.exports = app => {
       cert: fs.readFileSync('localhost.cert', 'utf8')
     }
     app.db.sequelize.sync().done(() => {
-      https.createServer(credentials, app)
+      if (process.env.NODE_ENV === 'development') {
+        app.listen(app.get("port"), () => {
+          console.log(`NTask API - Port ${app.get("port")}`);
+        });
+      } else {
+        https.createServer(credentials, app)
         .listen(app.get('port'), () => {
           console.log(`NTask API - Port ${app.get('port')}`);
         });
+      }
     });
-  }
+  };
 };
