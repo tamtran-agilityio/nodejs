@@ -1,10 +1,16 @@
 version: '3'
 services:
   web:
-    build: .
+    build: ./api
     ports:
       - "3000:3000"
     volumes:
-      - .:/web
+      - ./api:/web
     container_name: web
-    command: sh -c 'npm install && npm start'
+  client:
+    build: ./client
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./client:/client
+    container_name: client

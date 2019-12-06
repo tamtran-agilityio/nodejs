@@ -9,8 +9,8 @@ module.exports = app => {
     }
     app.db.sequelize.sync().done(() => {
       if (process.env.NODE_ENV === 'development') {
-        app.listen(app.get("port"), () => {
-          console.log(`NTask API - Port ${app.get("port")}`);
+        app.listen(app.get('port'), () => {
+          console.log(`NTask API - Port ${app.get('port')}`);
         });
       } else {
         https.createServer(credentials, app)

@@ -1,0 +1,6 @@
+{
+  "beautify.onSave": true,
+  "beautify.JSfiles": ["js", "json", "jsbeautifyrc", "jshintrc", "ts"],
+  "beautify.HTMLfiles": ["htm", "html"],
+  "editor.formatOnSave": true
+}
